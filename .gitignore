@@ -26,4 +26,5 @@
 
 /docker/dev/nginx/log/
 /docker/dev/postgres/data/
+/docker/dev/couchdb/data/
 

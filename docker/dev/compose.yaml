@@ -26,4 +26,18 @@ services:
             POSTGRES_DB: sovereigndb
             POSTGRES_HOST: postgres
             POSTGRES_PORT: 5432
+            COUCHDB_USER: symfony
+            COUCHDB_PASSWORD: password
+            COUCHDB_HOST: couchdb
+            COUCHDB_PORT: 5984
 
+    couchdb:
+        image: couchdb:3
+        volumes:
+            - ./couchdb/data:/opt/couchdb/data
+            - ./couchdb/local.ini:/opt/couchdb/etc/local.d/local.ini
+        environment:
+            COUCHDB_USER: symfony
+            COUCHDB_PASSWORD: password
+        ports:
+            - 127.0.0.1:5984:5984

@@ -1,4 +1,10 @@
 import './bootstrap.js';
+
+import PouchDB from 'pouchdb-browser';
+import PouchDBFind from 'pouchdb-find';
+
+PouchDB.plugin(PouchDBFind);
+
 /*
  * Welcome to your app's main JavaScript file!
  *
@@ -7,4 +13,9 @@ import './bootstrap.js';
  */
 import './styles/app.css';
 
-console.log('This log comes from assets/app.js - welcome to AssetMapper! 🎉');
+var db = new PouchDB('cards');
+db.replicate.from('http://symfony:password@127.0.0.1:5984/cards', {live: true});
+db.allDocs({include_docs: true, descending: true}, function (err, doc) {
+    doc.rows.forEach(console.log);
+});
+
