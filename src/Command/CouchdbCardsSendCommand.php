@@ -5,19 +5,17 @@ namespace App\Command;
 use App\Repository\CardRepository;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
-use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 
 #[AsCommand(
-    name: 'app:couchdb:send',
+    name: 'couchdb:cards:send',
     description: 'Send all cards to CouchDB',
 )]
-class CouchdbSendCommand extends Command
+class CouchdbCardsSendCommand extends Command
 {
     public function __construct(
         private readonly CardRepository      $cardRepository,

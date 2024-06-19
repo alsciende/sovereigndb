@@ -10,8 +10,8 @@
 ### Installation
 
 - clone this repo and cd to it
-- `make install`
 - `make up`
+- `make install`
 - go to http://localhost:8080
 
 ### Contributing
