@@ -28,3 +28,7 @@
 /docker/dev/postgres/data/
 /docker/dev/couchdb/data/
 
+
+###> phpstan/phpstan ###
+phpstan.neon
+###< phpstan/phpstan ###
