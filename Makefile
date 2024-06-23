@@ -2,6 +2,7 @@ build:
 	docker-compose -f docker/dev/compose.yaml build
 
 up:
+	docker image pull php:8.3-fpm-alpine
 	docker-compose -f docker/dev/compose.yaml up
 
 clean:
