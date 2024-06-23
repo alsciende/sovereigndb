@@ -1,8 +1,0 @@
-framework:
-    http_client:
-        scoped_clients:
-            couchdb.client:
-                base_uri: '%env(COUCHDB_URL)%'
-                headers:
-                    Content-Type: 'application/json'
-                    Accept: 'application/json'
