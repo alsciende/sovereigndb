@@ -1,10 +1,14 @@
 FROM php:8.3-fpm-alpine
 
 RUN apk update && apk add --no-cache \
-           bash bash-completion \
+           bash bash-completion autoconf make
+
+RUN apk add --no-cache \
            postgresql-dev \
        && docker-php-ext-install -j$(nproc) pgsql \
        && docker-php-ext-install -j$(nproc) pdo_pgsql
+
+RUN pecl install mongodb && docker-php-ext-enable mongodb
 
 RUN <<EOF
 #!/bin/sh
