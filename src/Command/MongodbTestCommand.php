@@ -19,7 +19,7 @@ class MongodbTestCommand extends Command
 {
     public function __construct(
         #[Autowire('%env(MONGODB_URL)%')]
-        private $connectionString,
+        private string $connectionString,
     )
     {
         parent::__construct();
