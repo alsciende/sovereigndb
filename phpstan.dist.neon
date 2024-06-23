@@ -1,0 +1,12 @@
+parameters:
+    level: max
+    paths:
+        - bin/
+        - config/
+        - public/
+        - src/
+        - tests/
+    type_perfect:
+        null_over_false: true
+        no_mixed: true
+        narrow_param: true

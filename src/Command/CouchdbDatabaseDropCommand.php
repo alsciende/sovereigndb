@@ -22,7 +22,7 @@ class CouchdbDatabaseDropCommand extends Command
     public function __construct(
         private readonly HttpClientInterface $couchdbClient,
         #[Autowire('%env(COUCHDB_DB)%')]
-        private $db,
+        private string $db,
     )
     {
         parent::__construct();

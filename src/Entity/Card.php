@@ -20,7 +20,7 @@ class Card
         return $this->id;
     }
 
-    public function setId(?string $id): void
+    public function setId(string $id): void
     {
         $this->id = $id;
     }
@@ -30,7 +30,7 @@ class Card
         return $this->title;
     }
 
-    public function setTitle(?string $title): void
+    public function setTitle(string $title): void
     {
         $this->title = $title;
     }
