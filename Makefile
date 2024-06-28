@@ -23,3 +23,8 @@ shell:
 
 lint:
 	$(php) bin/console lint:container
+
+test:
+	docker-compose -f docker/dev/compose.yaml exec php-fpm php bin/console lint:container
+	docker-compose -f docker/dev/compose.yaml exec php-fpm php vendor/bin/phpunit
+	
