@@ -1,3 +1,5 @@
+
+
 build:
 	docker-compose -f docker/dev/compose.yaml build
 
@@ -18,3 +20,7 @@ install:
 shell:
 	docker-compose -f docker/dev/compose.yaml exec php-fpm bash
 
+test:
+	docker-compose -f docker/dev/compose.yaml exec php-fpm php bin/console lint:container
+	docker-compose -f docker/dev/compose.yaml exec php-fpm php vendor/bin/phpunit
+	

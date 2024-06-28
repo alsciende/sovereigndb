@@ -5,6 +5,9 @@ namespace App\Repository;
 use App\Entity\Card;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\ORM\Exception\ORMException;
+use Doctrine\DBAL\Exception as DBALException;
+
 
 /**
  * @extends ServiceEntityRepository<Card>
@@ -16,28 +19,29 @@ class CardRepository extends ServiceEntityRepository
         parent::__construct($registry, Card::class);
     }
 
-    //    /**
-    //     * @return Card[] Returns an array of Card objects
-    //     */
-    //    public function findByExampleField($value): array
-    //    {
-    //        return $this->createQueryBuilder('c')
-    //            ->andWhere('c.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->orderBy('c.id', 'ASC')
-    //            ->setMaxResults(10)
-    //            ->getQuery()
-    //            ->getResult()
-    //        ;
-    //    }
+    // protected function fieldExists($fieldName): bool
+    // {
+    //     $classMetadata = $this->getClassMetadata();
+    //     return $classMetadata->hasField($fieldName) || $classMetadata->hasAssociation($fieldName);
+    // }
 
-    //    public function findOneBySomeField($value): ?Card
-    //    {
-    //        return $this->createQueryBuilder('c')
-    //            ->andWhere('c.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->getQuery()
-    //            ->getOneOrNullResult()
-    //        ;
-    //    }
+    /**
+    * @return Card[] Returns an array of Card objects
+    */
+    public function findBy(array $criteria, array|null $orderBy = ['id' => 'ASC'], ?int $limit = 100, ?int $offset = null): array
+    {
+        return parent::findBy($criteria, $orderBy, $limit, $offset);
+    }
+    
+    /**
+    * @return Card Returns a Card object
+    */
+    public function findById($id): Card
+    {
+        return $this->find($id);
+    }
+
+    /**
+    * @return Card[] Returns an array of Card objects
+    */
 }
