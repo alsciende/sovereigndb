@@ -5,8 +5,6 @@ namespace App\Repository;
 use App\Entity\Card;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
-use Doctrine\ORM\Exception\ORMException;
-use Doctrine\DBAL\Exception as DBALException;
 
 
 /**
@@ -18,6 +16,8 @@ class CardRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Card::class);
     }
+
+
 
     // protected function fieldExists($fieldName): bool
     // {
