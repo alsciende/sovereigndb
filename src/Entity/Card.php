@@ -15,16 +15,10 @@ class Card
     private ?string $id = null;
 
     #[ORM\Column(length: 50)]
-    private ?string $title = null;
+    private ?string $name = null;
 
     #[ORM\Column(type: Types::STRING, enumType: Faction::class)]
     private ?Faction $faction = null;
-
-    #[ORM\Column(type: Types::STRING, enumType: Type::class)]
-    private ?Type $card_type = null;
-
-    #[ORM\Column(type: Types::SIMPLE_ARRAY)]
-    private ?array $sub_types = null;
 
     #[ORM\Column(nullable: true)]
     private ?int $attack = null;
@@ -37,6 +31,12 @@ class Card
 
     #[ORM\Column(nullable: true)]
     private ?int $cost = null;
+
+    #[ORM\Column(type: Types::STRING, enumType: Type::class)]
+    private ?Type $type = null;
+
+    #[ORM\Column(type: Types::SIMPLE_ARRAY)]
+    private ?array $sub_types = null;
 
     #[ORM\Column(nullable: true, length:1024)]
     private ?string $card_effect = null;
@@ -55,14 +55,14 @@ class Card
         $this->id = $id;
     }
 
-    public function getTitle(): ?string
+    public function getName(): ?string
     {
-        return $this->title;
+        return $this->name;
     }
 
-    public function setTitle(string $title): void
+    public function setName(string $name): void
     {
-        $this->title = $title;
+        $this->name = $name;
     }
 
     public function getFaction(): ?Faction
@@ -80,14 +80,14 @@ class Card
         $this->cost = $cost;
     }
 
-    public function getType(): ?string
+    public function getType(): ?Type
     {
-        return $this->card_type;
+        return $this->type;
     }
 
-    public function setType(Type $card_type): void
+    public function setType(Type $type): void
     {
-        $this->card_type = $card_type;
+        $this->type = $type;
     }
 
     public function getSubTypes(): ?array
