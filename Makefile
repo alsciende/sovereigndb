@@ -1,3 +1,5 @@
+php = docker-compose -f docker/dev/compose.yaml exec php-fpm
+
 build:
 	docker-compose -f docker/dev/compose.yaml build
 
@@ -12,10 +14,12 @@ clean:
 	rm -rf vendor
 
 install:
-	docker-compose -f docker/dev/compose.yaml exec php-fpm composer install
-	docker-compose -f docker/dev/compose.yaml exec php-fpm php bin/console doctrine:migration:migrate -n
-	docker-compose -f docker/dev/compose.yaml exec php-fpm php bin/console doctrine:fixtures:load
+	$(php) composer install
+	$(php) php bin/console doctrine:migration:migrate -n
+	$(php) php bin/console doctrine:fixtures:load
 
 shell:
-	docker-compose -f docker/dev/compose.yaml exec php-fpm bash
+	$(php) bash
 
+lint:
+	$(php) bin/console lint:container
