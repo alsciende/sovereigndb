@@ -14,6 +14,18 @@ services:
             retries: 5
             start_period: 60s
 
+    pgweb:
+        restart: always
+        image: sosedoff/pgweb
+        ports:
+            - "8081:8081"
+        links:
+            - postgres:postgres
+        environment:
+            - PGWEB_DATABASE_URL=postgres://${POSTGRES_USER:-symfony}:${POSTGRES_PASSWORD:-password}@postgres:5432/${POSTGRES_DB:-sovereigndb}?sslmode=disable
+        depends_on:
+            - postgres
+
     nginx:
         image: nginx:latest
         volumes:
@@ -34,6 +46,13 @@ services:
             POSTGRES_DB: sovereigndb
             POSTGRES_HOST: postgres
             POSTGRES_PORT: 5432
+
+    symfony:
+        image: alpine:latest
+        volumes:
+            - ../../:/var/www/html
+        stop_signal: SIGKILL
+        command: tail -f /var/www/html/var/log/dev.log
 
     mailer:
         image: axllent/mailpit

@@ -2,6 +2,7 @@ build:
 	docker-compose -f docker/dev/compose.yaml build
 
 up:
+	mkdir -p var/log && touch var/log/dev.log
 	docker image pull php:8.3-fpm-alpine
 	docker-compose -f docker/dev/compose.yaml up
 
