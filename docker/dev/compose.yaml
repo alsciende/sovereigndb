@@ -13,6 +13,8 @@ services:
             timeout: 5s
             retries: 5
             start_period: 60s
+        networks:
+            - sovereignDB
 
     pgweb:
         restart: always
@@ -34,6 +36,8 @@ services:
             - ../../:/var/www/html
         ports:
             - 127.0.0.1:8080:80
+        networks:
+            - sovereignDB
 
     php-fpm:
         build: ./php-fpm/
@@ -46,6 +50,8 @@ services:
             POSTGRES_DB: sovereigndb
             POSTGRES_HOST: postgres
             POSTGRES_PORT: 5432
+        networks:
+            - sovereignDB
 
     symfony:
         image: alpine:latest
@@ -62,6 +68,12 @@ services:
         environment:
             MP_SMTP_AUTH_ACCEPT_ANY: 1
             MP_SMTP_AUTH_ALLOW_INSECURE: 1
+        networks:
+            - sovereignDB
 
 volumes:
     postgres-data:
+
+networks:
+    sovereignDB:
+        external: true
